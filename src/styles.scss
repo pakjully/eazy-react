@@ -1,0 +1,116 @@
+$font-stack: Roboto, sans-serif;
+$blue: #17A2B8;
+$light-blue: #007BFF;
+$orange: #FC9A12;
+$grey:rgba(142, 142, 142, 1);
+$white: #FFFFFF;
+$red: red;
+$weight-300: 300;
+$weight-400: 400;
+$size-12: 12px;
+$size-16: 16px;
+$size-24: 24px;
+
+body {
+    margin: 0;
+}
+.block {
+    font-family: $font-stack;
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid $grey;
+    border-radius: 4px;
+    max-width: 570px;
+    max-height: 447px;
+    box-shadow: 0 4px 4px 0 $grey;
+    margin: 132px auto;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 360px;
+    }
+    h1 {
+        font-size: $size-24;
+        font-weight: $weight-400;
+        margin: 57px 0 9px;
+    }
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 38px;
+        border: 1px solid $grey;
+        margin-top: 21px;
+        border-radius: 4px;
+    }
+    .red-frame {
+        border: 1px solid $red;
+    }
+    .span {
+        font-size: $size-12;
+        font-weight: $weight-300;
+    }
+    .forgot-password {
+        margin-left: auto;
+        margin-top: 5px;
+        margin-bottom: 12px;
+        color: $light-blue;
+    }
+    .error {
+        text-align: center;
+        color: $red;
+        margin-bottom: 12px;
+    }
+    .error-message {
+        margin-right: auto;
+        margin-top: 5px;
+        color: $red;
+    }
+    .button {
+        font-family: $font-stack;
+        font-size: $size-16;
+        color: $white;
+        border: none;
+        border-radius: 5px;
+        height: 36px;
+        cursor: pointer;
+    }
+    .button--login {
+        width: 140px;
+        background-color: $orange;
+        margin-bottom: 35px;
+        &:hover {
+            background-color: #db7c26;
+        }
+    }
+    .button--register {
+        width: 200px;
+        background-color: $blue;
+        margin-bottom: 46px;
+        &:hover {
+            background-color: #028090;
+        }
+    }
+    p {
+       font-weight: $weight-300;
+       margin-bottom: 18px;
+    }
+
+}
+
+.header {
+    max-width: 1219px;
+    height: 56px;
+    background-color: $blue;
+    margin: 0 auto;
+    img {
+        padding-top: 8px;
+        padding-left: 15px;
+    }
+}
+
+.orders {
+    max-width: 1219px;
+    margin: auto;
+}

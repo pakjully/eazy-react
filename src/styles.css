@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+}
+
+.block {
+  font-family: Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  border: 0.1px solid rgb(142, 142, 142);
+  border-radius: 4px;
+  max-width: 570px;
+  max-height: 447px;
+  box-shadow: 0 4px 4px 0 rgb(142, 142, 142);
+  margin: 132px auto;
+}
+.block .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 360px;
+}
+.block h1 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 57px 0 9px;
+}
+.block input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 38px;
+  border: 1px solid rgb(142, 142, 142);
+  margin-top: 21px;
+  border-radius: 4px;
+}
+.block span {
+  font-size: 12px;
+  font-weight: 300;
+  margin-left: auto;
+  margin-top: 5px;
+  margin-bottom: 12px;
+  color: #007BFF;
+}
+.block button {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  height: 36px;
+}
+.block .button--login {
+  width: 160px;
+  background-color: #FC9A12;
+  margin-bottom: 35px;
+}
+.block .button--register {
+  width: 200px;
+  background-color: #17A2B8;
+  margin-bottom: 46px;
+}
+.block p {
+  font-weight: 300;
+  margin-bottom: 18px;
+}
+
+.header {
+  max-width: 1219px;
+  height: 56px;
+  background-color: #17A2B8;
+  margin: 0 auto;
+}
+.header img {
+  padding-top: 8px;
+  padding-left: 15px;
+}
+
+.orders {
+  max-width: 1219px;
+  margin: auto;
+}
+
+/*# sourceMappingURL=styles.css.map */
