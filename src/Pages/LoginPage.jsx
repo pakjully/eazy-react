@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
-  const [isValidForm, setIsValidForm] = React.useState(false);
   const [loginData, setLoginData] = React.useState({
     email: '',
     password: '',
@@ -12,11 +11,6 @@ export default function LoginPage() {
     password: '',
     validateValues: '',
   });
-  function checkValues() {
-    if (!errors.email && !errors.password) {
-      setIsValidForm(true);
-    }
-  }
   function handleChange(e) {
     const { value, name } = e.target;
     setLoginData((prevData) => ({
@@ -50,10 +44,9 @@ export default function LoginPage() {
       validateValues: '',
     }));
   }
-  async function handleClick() {
-    checkValues();
-    if (isValidForm) {
-      await fetch('/api/sessions/auth', {
+  function handleClick() {
+    if (!errors.email && !errors.password) {
+      fetch('/api/sessions/auth', {
         headers: {
           'content-type': 'application/json',
         },
@@ -93,7 +86,7 @@ export default function LoginPage() {
         />
         <span className="span error-message">{errors.email}</span>
         <input
-          type="text"
+          type="password"
           className={errors.password ? 'red-frame' : ''}
           value={loginData.password}
           name="password"
@@ -103,7 +96,7 @@ export default function LoginPage() {
           onFocus={(e) => handleFocus(e)}
         />
         <span className="span error-message">{errors.password}</span>
-        <span className="span forgot-password">Забыли пароль?</span>
+        <span className="span forgot-password"><a href="http://www.google.com">Забыли пароль?</a></span>
         <span className="span error">{errors.validateValues}</span>
         <button className="button button--login" type="button" onClick={handleClick}>Войти</button>
         <p>Или зарегистрируйтесь, если еще нет аккаунта</p>
