@@ -31,14 +31,14 @@ export default function LoginPage() {
         ...prevData,
         [name]: 'Поле является обязательным',
       }));
-      if (loginData.email) {
-        const reg = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
-        if (!reg.test(loginData.email)) {
-          setErrors((prevData) => ({
-            ...prevData,
-            email: 'Введен некорректный адрес почты',
-          }));
-        }
+    }
+    if (loginData.email) {
+      const reg = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
+      if (!reg.test(loginData.email)) {
+        setErrors((prevData) => ({
+          ...prevData,
+          email: 'Введен некорректный адрес почты',
+        }));
       }
     }
   }
@@ -83,13 +83,13 @@ export default function LoginPage() {
         <h1>Войдите, чтобы продолжить</h1>
         <input
           type="text"
-          className={errors.email || errors.invalidEmail ? 'red-frame' : ''}
+          className={(errors.email || errors.invalidEmail) ? 'red-frame' : ''}
           value={loginData.email}
           name="email"
           placeholder="E-mail"
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
           onBlur={(e) => handleBlur(e, loginData.email)}
-          onFocus={(e) => handleFocus(e)}
+          onFocus={handleFocus}
         />
         <span className="span error-message">{errors.email}</span>
         <input
