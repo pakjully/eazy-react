@@ -11,6 +11,16 @@ $size-12: 12px;
 $size-16: 16px;
 $size-24: 24px;
 
+.button {
+    font-family: $font-stack;
+    font-size: $size-16;
+    color: $white;
+    border: none;
+    border-radius: 5px;
+    height: 36px;
+    cursor: pointer;
+}
+
 body {
     margin: 0;
 }
@@ -71,15 +81,15 @@ body {
         margin-top: 5px;
         color: $red;
     }
-    .button {
-        font-family: $font-stack;
-        font-size: $size-16;
-        color: $white;
-        border: none;
-        border-radius: 5px;
-        height: 36px;
-        cursor: pointer;
-    }
+    // .button {
+    //     font-family: $font-stack;
+    //     font-size: $size-16;
+    //     color: $white;
+    //     border: none;
+    //     border-radius: 5px;
+    //     height: 36px;
+    //     cursor: pointer;
+    // }
     .button--login {
         width: 140px;
         background-color: $orange;
@@ -88,6 +98,12 @@ body {
             background-color: #db7c26;
         }
     }
+    // .button--order {
+    //     background-color: $orange;
+    //     &:hover {
+    //         background-color: #db7c26;
+    //     }
+    // }
     .button--register {
         width: 200px;
         background-color: $blue;
@@ -117,4 +133,15 @@ body {
 .orders {
     max-width: 1219px;
     margin: auto;
-}
+        .button--order {
+        background-color: $orange;
+        margin-right: 0;
+        margin-left: auto;
+        &:hover {
+            background-color: #db7c26;
+        }
+    }
+    }
+
+
+

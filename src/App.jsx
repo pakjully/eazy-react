@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './styles.scss';
 import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
@@ -12,8 +12,8 @@ function App() {
   const [declOrders, setDeclOrders] = React.useState([]);
   const [allOrders, setAllOrders] = React.useState([]);
 
-  async function handleClick() {
-    await fetch('/api/sessions/auth', {
+  React.useEffect(() => {
+    fetch('/api/sessions/auth', {
       headers: {
         'content-type': 'application/json;charset=UTF-8',
       },
@@ -52,8 +52,7 @@ function App() {
         updated: modifyDate(declOrder.updated_at),
         price: declOrder.price,
       }))));
-  }
-
+  }, []);
   React.useEffect(() => {
     setAllOrders(orders.concat(declOrders).sort((a, b) => {
       if (a.number < b.number) {
@@ -70,19 +69,17 @@ function App() {
       <Header />
       <Routes>
         <Route
-          path="*"
-          element={(
-            <LoginPage
-              handleClick={handleClick}
-            />
-          )}
-        />
-        <Route
-          path="orders"
+          path="/orders"
           element={(
             <OrdersPage
               orders={allOrders}
             />
+        )}
+        />
+        <Route
+          path="/"
+          element={(
+            <LoginPage />
         )}
         />
       </Routes>

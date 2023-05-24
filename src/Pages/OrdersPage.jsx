@@ -35,6 +35,7 @@ export default function OrdersPage(props) {
   ]);
   return (
     <div className="orders">
+      <button type="button" className="button button--order">Создать заказ</button>
       <MaterialReactTable columns={columns} data={orders} />
     </div>
   );

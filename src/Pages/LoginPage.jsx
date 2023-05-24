@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const [loginData, setLoginData] = React.useState({
@@ -17,6 +18,7 @@ export default function LoginPage() {
       [name]: value,
     }));
   }
+  const navigate = useNavigate();
   function handleBlur(e, item) {
     const { name } = e.target;
     if (item === '') {
@@ -59,7 +61,7 @@ export default function LoginPage() {
       })
         .then((response) => {
           if (response.status === 201) {
-            alert('Вы вошли');
+            navigate('/orders');
           } else if (response.status === 401) {
             setErrors((prevData) => ({
               ...prevData,
