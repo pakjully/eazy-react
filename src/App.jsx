@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
@@ -29,7 +30,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setOrders(data.orders.map((order) => ({
-        number: order.number,
+        number: <Link to={order.number}>{order.number}</Link>,
         year: order.year,
         type: 'Расчет налоговой базы',
         state: stateDictionary[order.state] || '-',
@@ -44,7 +45,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setDeclOrders(data.orders.map((declOrder) => ({
-        number: declOrder.number,
+        number: <Link to={declOrder.number}>{declOrder.number}</Link>,
         year: declOrder.year,
         type: 'Декларация',
         state: stateDictionary[declOrder.state] || '-',
