@@ -1,9 +1,9 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
+import EmptyPage from './Pages/EmptyPage';
 import { stateDictionary } from './Dictionary';
 import { modifyDate } from './utils/modifyDate';
 import { Header } from './Header';
@@ -81,6 +81,12 @@ function App() {
           path="/"
           element={(
             <LoginPage />
+        )}
+        />
+        <Route
+          path="*"
+          element={(
+            <EmptyPage />
         )}
         />
       </Routes>
