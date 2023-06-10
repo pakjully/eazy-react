@@ -81,15 +81,6 @@ body {
         margin-top: 5px;
         color: $red;
     }
-    // .button {
-    //     font-family: $font-stack;
-    //     font-size: $size-16;
-    //     color: $white;
-    //     border: none;
-    //     border-radius: 5px;
-    //     height: 36px;
-    //     cursor: pointer;
-    // }
     .button--login {
         width: 140px;
         background-color: $orange;
@@ -98,12 +89,6 @@ body {
             background-color: #db7c26;
         }
     }
-    // .button--order {
-    //     background-color: $orange;
-    //     &:hover {
-    //         background-color: #db7c26;
-    //     }
-    // }
     .button--register {
         width: 200px;
         background-color: $blue;
