@@ -1,86 +1,37 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './styles.scss';
 import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
-import { stateDictionary } from './Dictionary';
-import { modifyDate } from './utils/modifyDate';
 import { Header } from './Header';
 
 function App() {
-  const [orders, setOrders] = React.useState([]);
-  const [declOrders, setDeclOrders] = React.useState([]);
-  const [allOrders, setAllOrders] = React.useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const navigate = useNavigate();
+  function handleSuccesLogin() {
+    setIsLoggedIn(true);
+  }
   React.useEffect(() => {
-    fetch('/api/sessions/auth', {
-      headers: {
-        'content-type': 'application/json;charset=UTF-8',
-      },
-      body: '{"email":"admin@example.com","password":"admin@example.com"}',
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-    });
-    fetch('/api/users/552c4028-c4c0-4ab7-9937-47023d0bcd05/orders', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((data) => setOrders(data.orders.map((order) => ({
-        number: <Link to={order.number}>{order.number}</Link>,
-        year: order.year,
-        type: 'Расчет налоговой базы',
-        state: stateDictionary[order.state] || '-',
-        created: modifyDate(order.created_at),
-        updated: modifyDate(order.updated_at),
-        price: order.price,
-      }))));
-    fetch('/api/users/552c4028-c4c0-4ab7-9937-47023d0bcd05/declaration_orders', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((data) => setDeclOrders(data.orders.map((declOrder) => ({
-        number: <Link to={declOrder.number}>{declOrder.number}</Link>,
-        year: declOrder.year,
-        type: 'Декларация',
-        state: stateDictionary[declOrder.state] || '-',
-        created: modifyDate(declOrder.created_at),
-        updated: modifyDate(declOrder.updated_at),
-        price: declOrder.price,
-      }))));
-  }, []);
-  React.useEffect(() => {
-    setAllOrders(orders.concat(declOrders).sort((a, b) => {
-      if (a.number < b.number) {
-        return -1;
-      }
-      if (a.number > b.number) {
-        return 1;
-      }
-      return 0;
-    }));
-  }, [orders, declOrders]);
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+  }, [isLoggedIn, navigate]);
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route
           path="/orders"
-          element={(
-            <OrdersPage
-              orders={allOrders}
-            />
-        )}
+          element={
+            <OrdersPage />
+        }
         />
         <Route
-          path="/"
+          path="/login"
           element={(
-            <LoginPage />
+            <LoginPage
+              handleSuccessLogin={handleSuccesLogin}
+            />
         )}
         />
       </Routes>
