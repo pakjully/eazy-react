@@ -3,6 +3,7 @@ import MaterialReactTable from 'material-react-table';
 import { Link } from 'react-router-dom';
 import { stateDictionary } from '../Dictionary';
 import { modifyDate } from '../utils/modifyDate';
+import Show from './Show';
 
 export default function OrdersPage() {
   const [orders, setOrders] = React.useState([]);
@@ -17,7 +18,7 @@ export default function OrdersPage() {
     })
       .then((res) => res.json())
       .then((data) => setOrders(data.orders.map((order) => ({
-        number: <Link to={order.id}>{order.number}</Link>,
+        number: <Link to={`${order.id}/show`}>{order.number}</Link>,
         year: order.year,
         type: 'Расчет налоговой базы',
         state: stateDictionary[order.state] || '-',
@@ -32,7 +33,7 @@ export default function OrdersPage() {
     })
       .then((res) => res.json())
       .then((data) => setDeclOrders(data.orders.map((declOrder) => ({
-        number: <Link to={declOrder.id}>{declOrder.number}</Link>,
+        number: <Link to={`${declOrder.id}/show`}>{declOrder.number}</Link>,
         year: declOrder.year,
         type: 'Декларация',
         state: stateDictionary[declOrder.state] || '-',
