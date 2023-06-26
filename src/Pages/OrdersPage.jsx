@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
+import { Link } from 'react-router-dom';
 import { stateDictionary } from '../Dictionary';
 import { modifyDate } from '../utils/modifyDate';
+import Show from './Show';
 
 export default function OrdersPage() {
   const [orders, setOrders] = React.useState([]);
@@ -16,7 +18,7 @@ export default function OrdersPage() {
     })
       .then((res) => res.json())
       .then((data) => setOrders(data.orders.map((order) => ({
-        number: order.number,
+        number: <Link to={`${order.id}/show`}>{order.number}</Link>,
         year: order.year,
         type: 'Расчет налоговой базы',
         state: stateDictionary[order.state] || '-',
@@ -31,7 +33,7 @@ export default function OrdersPage() {
     })
       .then((res) => res.json())
       .then((data) => setDeclOrders(data.orders.map((declOrder) => ({
-        number: declOrder.number,
+        number: <Link to={`${declOrder.id}/show`}>{declOrder.number}</Link>,
         year: declOrder.year,
         type: 'Декларация',
         state: stateDictionary[declOrder.state] || '-',
@@ -56,10 +58,12 @@ export default function OrdersPage() {
     {
       accessorKey: 'number',
       header: 'Номер заказа',
+      size: 100,
     },
     {
       accessorKey: 'year',
       header: 'Год',
+      size: 100,
     },
     {
       accessorKey: 'type',
@@ -68,18 +72,22 @@ export default function OrdersPage() {
     {
       accessorKey: 'state',
       header: 'Состояние',
+      size: 100,
     },
     {
       accessorKey: 'created',
       header: 'Дата создания',
+      size: 100,
     },
     {
       accessorKey: 'updated',
       header: 'Дата обновления',
+      size: 100,
     },
     {
       accessorKey: 'price',
       header: 'Сумма',
+      size: 100,
     },
   ]);
   return (

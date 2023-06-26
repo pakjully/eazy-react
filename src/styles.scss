@@ -119,9 +119,10 @@ body {
     max-width: 1219px;
     margin: auto;
         .button--order {
+        display: flex;
+        align-items: center;
+        margin: 10px 0 10px auto ;
         background-color: $orange;
-        margin-right: 0;
-        margin-left: auto;
         &:hover {
             background-color: #db7c26;
         }
