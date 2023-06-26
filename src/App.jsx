@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import './styles.scss';
 import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
+import EmptyPage from './Pages/EmptyPage';
 import Show from './Pages/Show';
 import { Header } from './Header';
 
@@ -66,6 +67,12 @@ function App() {
           element={
             <Show />
           }
+        />
+        <Route
+          path="*"
+          element={(
+            <EmptyPage />
+        )}
         />
       </Routes>
     </div>
