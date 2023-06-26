@@ -1,87 +1,72 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './styles.scss';
 import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
 import EmptyPage from './Pages/EmptyPage';
-import { stateDictionary } from './Dictionary';
-import { modifyDate } from './utils/modifyDate';
+import Show from './Pages/Show';
 import { Header } from './Header';
 
 function App() {
-  const [orders, setOrders] = React.useState([]);
-  const [declOrders, setDeclOrders] = React.useState([]);
-  const [allOrders, setAllOrders] = React.useState([]);
-
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const navigate = useNavigate();
+  const ref = React.useRef();
+  function handleSuccesLogin() {
+    setIsLoggedIn(true);
+    const targetUrl = ref.current || '/';
+    navigate(targetUrl);
+  }
   React.useEffect(() => {
-    fetch('/api/sessions/auth', {
-      headers: {
-        'content-type': 'application/json;charset=UTF-8',
-      },
-      body: '{"email":"admin@example.com","password":"admin@example.com"}',
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'include',
-    });
-    fetch('/api/users/552c4028-c4c0-4ab7-9937-47023d0bcd05/orders', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((data) => setOrders(data.orders.map((order) => ({
-        number: <Link to={order.number}>{order.number}</Link>,
-        year: order.year,
-        type: 'Расчет налоговой базы',
-        state: stateDictionary[order.state] || '-',
-        created: modifyDate(order.created_at),
-        updated: modifyDate(order.updated_at),
-        price: order.price,
-      }))));
-    fetch('/api/users/552c4028-c4c0-4ab7-9937-47023d0bcd05/declaration_orders', {
-      method: 'GET',
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((data) => setDeclOrders(data.orders.map((declOrder) => ({
-        number: <Link to={declOrder.number}>{declOrder.number}</Link>,
-        year: declOrder.year,
-        type: 'Декларация',
-        state: stateDictionary[declOrder.state] || '-',
-        created: modifyDate(declOrder.created_at),
-        updated: modifyDate(declOrder.updated_at),
-        price: declOrder.price,
-      }))));
+    if (isLoading) {
+      return;
+    }
+    const currentUrl = window.location.pathname;
+    if (isLoggedIn) {
+      if (currentUrl === '/') {
+        navigate('/orders');
+      }
+    } else if (currentUrl !== '/login') {
+      ref.current = currentUrl;
+      navigate('/login');
+    }
+  }, [isLoggedIn, navigate, isLoading]);
+  React.useEffect(() => {
+    fetch('/api/sessions/me')
+      .then((response) => {
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(() => setIsLoggedIn(false))
+      .finally(() => setIsLoading(false));
   }, []);
-  React.useEffect(() => {
-    setAllOrders(orders.concat(declOrders).sort((a, b) => {
-      if (a.number < b.number) {
-        return -1;
-      }
-      if (a.number > b.number) {
-        return 1;
-      }
-      return 0;
-    }));
-  }, [orders, declOrders]);
+  if (isLoading) {
+    return 'The page is loading';
+  }
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route
           path="/orders"
+          element={
+            <OrdersPage />
+        }
+        />
+        <Route
+          path="/login"
           element={(
-            <OrdersPage
-              orders={allOrders}
+            <LoginPage
+              handleSuccessLogin={handleSuccesLogin}
             />
         )}
         />
         <Route
-          path="/"
-          element={(
-            <LoginPage />
-        )}
+          path="/orders/:orderId/show"
+          element={
+            <Show />
+          }
         />
         <Route
           path="*"

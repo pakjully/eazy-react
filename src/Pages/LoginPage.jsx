@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function LoginPage(props) {
+  const { handleSuccessLogin } = props;
   const [loginData, setLoginData] = React.useState({
     email: '',
     password: '',
@@ -18,7 +18,6 @@ export default function LoginPage() {
       [name]: value,
     }));
   }
-  const navigate = useNavigate();
   function handleBlur(e, item) {
     const { name } = e.target;
     if (item === '') {
@@ -61,7 +60,7 @@ export default function LoginPage() {
       })
         .then((response) => {
           if (response.status === 201) {
-            navigate('/orders');
+            handleSuccessLogin();
           } else if (response.status === 401) {
             setErrors((prevData) => ({
               ...prevData,
