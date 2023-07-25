@@ -10,7 +10,7 @@ $weight-400: 400;
 $size-12: 12px;
 $size-16: 16px;
 $size-24: 24px;
-
+$size-32: 32px;
 .button {
     font-family: $font-stack;
     font-size: $size-16;
@@ -97,7 +97,7 @@ body {
             background-color: #028090;
         }
     }
-    p {
+    .goregister {
        font-weight: $weight-300;
        margin-bottom: 18px;
     }
@@ -143,5 +143,20 @@ body {
     }
 }
 
+.choose-page {
+    max-width: 1219px;
+    font-family: $font-stack;
+    margin: 0 auto;
+    .heading {
+        text-align: center;
+        font-weight: $weight-400;
+        font-size: $size-32;
+        margin-top: 50px;
+    }
+    .container {
+        width: 100%;
+        display: flex;
+    }
+}
 
 

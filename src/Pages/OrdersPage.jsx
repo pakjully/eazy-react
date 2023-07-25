@@ -3,7 +3,6 @@ import MaterialReactTable from 'material-react-table';
 import { Link } from 'react-router-dom';
 import { stateDictionary } from '../Dictionary';
 import { modifyDate } from '../utils/modifyDate';
-import Show from './Show';
 
 export default function OrdersPage() {
   const [orders, setOrders] = React.useState([]);
@@ -92,7 +91,10 @@ export default function OrdersPage() {
   ]);
   return (
     <div className="orders">
-      <button type="button" className="button button--order">Создать заказ</button>
+      <Link to="/orders/choose">
+        <button type="button" className="button button--order">Создать заказ</button>
+      </Link>
+
       <MaterialReactTable columns={columns} data={allOrders} />
     </div>
   );
