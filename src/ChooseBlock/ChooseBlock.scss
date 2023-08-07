@@ -1,16 +1,4 @@
-$font-stack: Roboto, sans-serif;
-$blue: #17A2B8;
-$light-blue: #007BFF;
-$orange: #FC9A12;
-$grey:rgba(142, 142, 142, 1);
-$white: #FFFFFF;
-$red: red;
-$weight-300: 300;
-$weight-400: 400;
-$size-12: 12px;
-$size-16: 16px;
-$size-24: 24px;
-$size-32: 32px;
+@import '../constants.scss';
 
 .block {
     width: 467px;
@@ -34,6 +22,9 @@ $size-32: 32px;
     font-weight: $weight-300;
     text-align: center;
     line-height: 25px;
+}
+.declaration {
+    padding-bottom: 40px;
 }
 .block-button {
     width: 160px;

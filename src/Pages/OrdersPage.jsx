@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { stateDictionary } from '../Dictionary';
 import { modifyDate } from '../utils/modifyDate';
 
-export default function OrdersPage() {
+export function OrdersPage() {
   const [orders, setOrders] = React.useState([]);
   const [declOrders, setDeclOrders] = React.useState([]);
   const [allOrders, setAllOrders] = React.useState([]);

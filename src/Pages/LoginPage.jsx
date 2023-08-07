@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoginPage(props) {
+export function LoginPage(props) {
   const { handleSuccessLogin } = props;
   const [loginData, setLoginData] = React.useState({
     email: '',
