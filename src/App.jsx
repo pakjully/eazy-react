@@ -5,6 +5,7 @@ import LoginPage from './Pages/LoginPage';
 import OrdersPage from './Pages/OrdersPage';
 import EmptyPage from './Pages/EmptyPage';
 import Show from './Pages/Show';
+import Declaration from './Declaration/Declaration';
 import { Header } from './Header';
 
 function App() {
@@ -74,6 +75,13 @@ function App() {
             <EmptyPage />
         )}
         />
+        <Route
+          path="/declaration-orders/new"
+          element={(
+            <Declaration />
+        )}
+        />
+
       </Routes>
     </div>
   );
