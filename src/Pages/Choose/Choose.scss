@@ -1,0 +1,12 @@
+@import '../../constants.scss';
+
+.block-text {
+  margin: 0;
+  max-width: 407px;
+  font-weight: $weight-300;
+  text-align: center;
+  line-height: 25px;
+}
+.declaration {
+  padding-bottom: 40px;
+}
