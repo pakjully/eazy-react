@@ -1,15 +1,4 @@
-$font-stack: Roboto, sans-serif;
-$blue: #17A2B8;
-$light-blue: #007BFF;
-$orange: #FC9A12;
-$grey:rgba(142, 142, 142, 1);
-$white: #FFFFFF;
-$red: red;
-$weight-300: 300;
-$weight-400: 400;
-$size-12: 12px;
-$size-16: 16px;
-$size-24: 24px;
+@import './constants.scss';
 
 .button {
     font-family: $font-stack;
@@ -97,7 +86,7 @@ body {
             background-color: #028090;
         }
     }
-    p {
+    .goregister {
        font-weight: $weight-300;
        margin-bottom: 18px;
     }
@@ -116,18 +105,10 @@ body {
 }
 
 .orders {
+    font-family: $font-stack;
     max-width: 1219px;
     margin: auto;
-        .button--order {
-        display: flex;
-        align-items: center;
-        margin: 10px 0 10px auto ;
-        background-color: $orange;
-        &:hover {
-            background-color: #db7c26;
-        }
-        }
-    }
+}
 
 .empty-page {
     margin-top: 100px;
@@ -143,5 +124,20 @@ body {
     }
 }
 
+.choose-page {
+    max-width: 1219px;
+    font-family: $font-stack;
+    margin: 0 auto;
+    .heading {
+        text-align: center;
+        font-weight: $weight-400;
+        font-size: $size-32;
+        margin-top: 50px;
+    }
+    .container {
+        width: 100%;
+        display: flex;
+    }
+}
 
 

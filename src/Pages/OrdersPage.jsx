@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import { Link } from 'react-router-dom';
+import { Pseudobutton } from '../Buttons/Pseudobutton';
 import { stateDictionary } from '../Dictionary';
 import { modifyDate } from '../utils/modifyDate';
-import Show from './Show';
 
-export default function OrdersPage() {
+export function OrdersPage() {
   const [orders, setOrders] = React.useState([]);
   const [declOrders, setDeclOrders] = React.useState([]);
   const [allOrders, setAllOrders] = React.useState([]);
@@ -92,7 +92,15 @@ export default function OrdersPage() {
   ]);
   return (
     <div className="orders">
-      <button type="button" className="button button--order">Создать заказ</button>
+      <Link to="/orders/choose">
+        {/* <button type="button" className="button button--order">Создать заказ</button> */}
+        <Pseudobutton
+          text="Создать заказ"
+          color="orange"
+          design="order"
+        />
+      </Link>
+
       <MaterialReactTable columns={columns} data={allOrders} />
     </div>
   );

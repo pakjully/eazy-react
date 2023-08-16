@@ -1,0 +1,27 @@
+@import '../constants.scss';
+
+.pseudobutton {
+    border: 1px solid black;
+    padding: 7px;
+    border-radius: 7px;
+    color: white;
+    &:hover {
+        background-color: #db7c26;
+    }
+}
+.orange {
+    background-color: $orange;
+    border-color: $orange;
+}
+.choose {
+    margin-bottom: 15px;
+    padding: 5px 15px;
+}
+.order {
+    width: 120px;
+    margin: 10px 0 10px auto ;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+}

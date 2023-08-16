@@ -1,0 +1,28 @@
+@import '../constants.scss';
+
+.block {
+    width: 467px;
+    height: 321px;
+    border: 0.1px solid rgba(142, 142, 142, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+.block-heading {
+    font-size: $size-24;
+    max-width: 329px;
+    text-align: center;
+    font-weight: $weight-400;
+}
+.block-text {
+    margin: 0;
+    max-width: 407px;
+    font-weight: $weight-300;
+    text-align: center;
+    line-height: 25px;
+}
+.declaration {
+    padding-bottom: 40px;
+}

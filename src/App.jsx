@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './styles.scss';
-import LoginPage from './Pages/LoginPage';
-import OrdersPage from './Pages/OrdersPage';
-import EmptyPage from './Pages/EmptyPage';
-import Show from './Pages/Show';
+import { LoginPage } from './Pages/LoginPage';
+import { OrdersPage } from './Pages/OrdersPage';
+import { EmptyPage } from './Pages/EmptyPage';
+import { Show } from './Pages/Show';
+import { Choose } from './Pages/Choose';
 import { Header } from './Header';
 
 function App() {
@@ -73,6 +74,12 @@ function App() {
           element={(
             <EmptyPage />
         )}
+        />
+        <Route
+          path="/orders/choose"
+          element={(
+            <Choose />
+          )}
         />
       </Routes>
     </div>

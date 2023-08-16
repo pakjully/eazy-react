@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function LoginPage(props) {
+export function LoginPage(props) {
   const { handleSuccessLogin } = props;
   const [loginData, setLoginData] = React.useState({
     email: '',
@@ -99,7 +99,7 @@ export default function LoginPage(props) {
         <span className="span forgot-password"><a href="http://www.google.com">Забыли пароль?</a></span>
         <span className="span error">{errors.validateValues}</span>
         <button className="button button--login" type="button" onClick={handleClick}>Войти</button>
-        <p>Или зарегистрируйтесь, если еще нет аккаунта</p>
+        <p className="goregister">Или зарегистрируйтесь, если еще нет аккаунта</p>
         <button className="button button--register" type="button">Зарегистрироваться</button>
       </div>
     </div>
