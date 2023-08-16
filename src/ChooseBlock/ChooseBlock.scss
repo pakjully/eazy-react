@@ -26,18 +26,3 @@
 .declaration {
     padding-bottom: 40px;
 }
-.block-button {
-    width: 160px;
-    height: 40px;
-    border: 1px solid $orange;
-    border-radius: 5px;
-    background-color: $orange;
-    color: $white;
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-size: $size-16;
-    &:hover {
-        background-color: #db7c26;
-    }
-    cursor: pointer;
-}

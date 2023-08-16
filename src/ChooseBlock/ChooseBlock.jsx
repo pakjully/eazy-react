@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Pseudobutton } from '../Buttons/Pseudobutton';
 import './ChooseBlock.scss';
 
 export default function ChooseBlock(props) {
@@ -8,13 +9,19 @@ export default function ChooseBlock(props) {
     children,
     heading,
     link,
+    color,
+    design,
   } = props;
   return (
     <div className="block">
       <p className="block-heading">{heading}</p>
       {children}
       <Link to={link}>
-        <button type="button" className="block-button">{button}</button>
+        <Pseudobutton
+          text={button}
+          color={color}
+          design={design}
+        />
       </Link>
     </div>
   );

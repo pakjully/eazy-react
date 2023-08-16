@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import { Link } from 'react-router-dom';
+import { Pseudobutton } from '../Buttons/Pseudobutton';
 import { stateDictionary } from '../Dictionary';
 import { modifyDate } from '../utils/modifyDate';
 
@@ -92,7 +93,12 @@ export function OrdersPage() {
   return (
     <div className="orders">
       <Link to="/orders/choose">
-        <button type="button" className="button button--order">Создать заказ</button>
+        {/* <button type="button" className="button button--order">Создать заказ</button> */}
+        <Pseudobutton
+          text="Создать заказ"
+          color="orange"
+          design="order"
+        />
       </Link>
 
       <MaterialReactTable columns={columns} data={allOrders} />

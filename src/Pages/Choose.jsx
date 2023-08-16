@@ -10,6 +10,8 @@ export function Choose() {
           heading="Расчет налоговой базы по Interactive Brokers"
           button="Сделать расчет"
           link="/orders/new"
+          color="orange"
+          design="choose"
         >
           <p className="block-text">Система автоматически рассчитает налоговую базу, и на выходе вы получите:</p>
           <p className="block-text">- Расчет налоговой базы по IB</p>
@@ -20,6 +22,8 @@ export function Choose() {
           heading="Декларация под ключ"
           button="Хочу декларацию"
           link="/declaration-orders/new"
+          color="orange"
+          design="choose"
         >
           <p className="block-text declaration">
             Если Вы не хотите тратить время и разбираться в вычетах, сальдировании и тому подобном,

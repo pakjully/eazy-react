@@ -105,18 +105,10 @@ body {
 }
 
 .orders {
+    font-family: $font-stack;
     max-width: 1219px;
     margin: auto;
-        .button--order {
-        display: flex;
-        align-items: center;
-        margin: 10px 0 10px auto ;
-        background-color: $orange;
-        &:hover {
-            background-color: #db7c26;
-        }
-        }
-    }
+}
 
 .empty-page {
     margin-top: 100px;
