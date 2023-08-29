@@ -6,8 +6,9 @@ import { OrdersPage } from './Pages/OrdersPage';
 import { EmptyPage } from './Pages/EmptyPage';
 import { Show } from './Pages/Show';
 import { Choose } from './Pages/Choose';
-import Declaration from './Declaration/Declaration';
+import { Declaration } from './Declaration/Declaration';
 import { Header } from './Header';
+import { Spinner } from 'react-bootstrap';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -44,7 +45,7 @@ function App() {
       .finally(() => setIsLoading(false));
   }, []);
   if (isLoading) {
-    return 'The page is loading';
+    return <div className="spinner"><Spinner animation="border" /></div>;
   }
   return (
     <div className="App">

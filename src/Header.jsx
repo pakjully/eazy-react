@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './images/logo_light 2.svg';
+import logo from './images/logo/logo_light 2.svg';
 
 export function Header() {
   return (
