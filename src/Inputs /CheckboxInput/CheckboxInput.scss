@@ -1,0 +1,55 @@
+@import '../../constants.scss';
+
+.checkbox-item {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+}
+
+.checkbox-icon {
+    width: 300px;
+    padding-bottom: 10px;
+    background-repeat: 'no-repeat';
+    background-size: contain;
+    width: 200;
+    height: 35;
+    margin-Left: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin: 5px 0 5px 10px;
+}
+
+.checkbox-icons {
+    min-height: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.mycheck {
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (min-width: 980px) {
+    .checkbox-icons {
+        height: 250px;
+    }
+}
+@media screen and (min-width: 675px) and (max-width: 979px) {
+    .checkbox-icons {
+        height: 350px;
+    }
+}
+@media screen and  (max-width: 674px) {
+    .checkbox-icons {
+        height: 650px;
+    }
+}
