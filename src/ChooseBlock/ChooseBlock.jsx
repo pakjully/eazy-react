@@ -13,7 +13,7 @@ export default function ChooseBlock(props) {
     design,
   } = props;
   return (
-    <div className="block">
+    <div className="choose-block">
       <p className="block-heading">{heading}</p>
       {children}
       <Link to={link}>

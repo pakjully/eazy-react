@@ -1,14 +1,16 @@
 @import '../constants.scss';
 
-.block {
+.choose-block {
     width: 467px;
     height: 321px;
     border: 0.1px solid rgba(142, 142, 142, 1);
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 50px;
+    margin: 50px 50px 0;
+    box-shadow: 0 4px 4px 0 $grey;
 }
 .block-heading {
     font-size: $size-24;
