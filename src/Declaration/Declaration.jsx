@@ -4,11 +4,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Collapse } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { TextInput } from '../Inputs /TextInput/TextInput';
-import { SelectInput } from '../Inputs /SelectInput/SelectInput';
-import { SwitchInput } from '../Inputs /SwitchInput/SwitchInput';
-import { CheckboxInput } from '../Inputs /CheckboxInput/CheckboxInput';
-import { FileInput } from '../Inputs /FileInput/FileInput';
+import { TextInput } from '../Inputs/TextInput/TextInput';
+import { SelectInput } from '../Inputs/SelectInput/SelectInput';
+import { SwitchInput } from '../Inputs/SwitchInput/SwitchInput';
+import { CheckboxInput } from '../Inputs/CheckboxInput/CheckboxInput';
+import { FileInput } from '../Inputs/FileInput/FileInput';
 import { convertData } from '../utils/convertData/convertData';
 
 function validateRequireness(value) {
