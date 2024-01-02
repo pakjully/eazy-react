@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../images/404.png';
+import img from '../images/logo/404.png';
 
 export function EmptyPage() {
   return (
