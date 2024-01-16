@@ -12,7 +12,7 @@ import { FileInput } from '../Inputs/FileInput/FileInput';
 import { convertData } from '../utils/convertData/convertData';
 
 function validateRequireness(value) {
-  const error = value === '' ? 'Поле является обязательным' : '';
+  const error = value === '' ? ['Поле является обязательным'] : [];
   return error;
 }
 
@@ -20,7 +20,7 @@ const textFieldNames = [
   'year',
   'submittedBefore',
   'comment',
-  'promocodeLoaded',
+  'promocode',
   'name',
   'phone',
 ].map((item) => `order[${item}]`);
@@ -55,12 +55,14 @@ const fileFieldNames = [
   'foreign_non_ib_broker_reports[]',
 ];
 
+const promocodeName = ['promocode'];
+
 function createInitialFields(fieldNames, initialValue) {
   return fieldNames.reduce((accumulator, fieldName) => {
     const initialParams = {
       value: initialValue,
       disabled: false,
-      error: '',
+      errors: [],
     };
     accumulator[fieldName] = initialParams;
     return accumulator;
@@ -69,7 +71,10 @@ function createInitialFields(fieldNames, initialValue) {
 const textFields = createInitialFields(textFieldNames, '');
 const boolFileds = createInitialFields(boolFieldNames, false);
 const fileFields = createInitialFields(fileFieldNames, []);
-const initialFields = { ...textFields, ...boolFileds, ...fileFields };
+const promocodeField = createInitialFields(promocodeName, '');
+const initialFields = {
+  ...textFields, ...boolFileds, ...fileFields, ...promocodeField,
+};
 
 const validators = {
   'order[year]': [validateRequireness],
@@ -88,16 +93,16 @@ export function Declaration() {
     const fieldValidators = validators[name] ?? [];
     const isFieldInvalid = fieldValidators.some((validator) => {
       const validationResult = validator(value);
-      if (validationResult) {
+      if (validationResult.length) {
         setFields((prevData) => ({
           ...prevData,
           [name]: {
             ...prevData[name],
-            error: validationResult,
+            errors: validationResult,
           },
         }));
       }
-      return Boolean(validationResult);
+      return Boolean(validationResult.length);
     });
     return isFieldInvalid;
   }
@@ -209,7 +214,22 @@ export function Declaration() {
       [name]: {
         ...prevData[name],
         value: type === 'checkbox' ? checked : value,
-        error: '',
+        errors: [],
+      },
+    }));
+  }, []);
+
+  const handleMaskedInputChange = useCallback((event) => {
+    const {
+      value, name,
+    } = event.target;
+    const computedValue = value.replaceAll('_', '');
+    setFields((prevData) => ({
+      ...prevData,
+      [name]: {
+        ...prevData[name],
+        value: computedValue,
+        errors: [],
       },
     }));
   }, []);
@@ -248,15 +268,31 @@ export function Declaration() {
         mode: 'cors',
         credentials: 'include',
       })
-        // .then(() => navigate('/orders'))
         .then((result) => {
           if (result.status >= 400 && result.status < 500) {
-            alert('Форма содержит ошибки');
-          } else if (result.status >= 500) {
+            return result.json();
+          } if (result.status >= 500) {
             alert('Внутренняя ошибка сервера');
           } else {
             navigate('/orders');
           }
+        })
+        .then((data) => {
+          const dataObj = data.error.data;
+          const fieldNames = Object.keys(dataObj);
+          setFields((prevData) => {
+            const newFields = fieldNames.reduce((accum, fieldName) => {
+              const errorArray = data.error.data[fieldName];
+              return {
+                ...accum,
+                [fieldName]: {
+                  ...accum[fieldName],
+                  errors: errorArray,
+                },
+              };
+            }, prevData);
+            return newFields;
+          });
         });
     }
   }
@@ -283,7 +319,7 @@ export function Declaration() {
           handleChange={handleChange}
           options={YearOptions}
           handleBlur={handleBlur}
-          error={fields['order[year]'].error}
+          errors={fields['order[year]'].errors}
         />
         <SelectInput
           text="Ранее подавалась декларация за указанный год:"
@@ -291,7 +327,7 @@ export function Declaration() {
           handleChange={handleChange}
           options={YesNoOptions}
           handleBlur={handleBlur}
-          error={fields['order[submittedBefore]'].error}
+          errors={fields['order[submittedBefore]'].errors}
         />
         <SwitchInput
           text="Доходы по зарубежным брокерам"
@@ -410,12 +446,14 @@ export function Declaration() {
           handleChange={handleChange}
           type="textarea"
           handleBlur={handleBlur}
+          errors={fields['order[comment]'].errors}
         />
         <TextInput
           text="Промокод"
-          value={fields['order[promocodeLoaded]'].value}
-          name="order[promocodeLoaded]"
+          value={fields.promocode.value}
+          name="promocode"
           handleChange={handleChange}
+          errors={fields.promocode.errors}
         />
         <TextInput
           text="Имя"
@@ -423,15 +461,15 @@ export function Declaration() {
           name="order[name]"
           handleChange={handleChange}
           handleBlur={handleBlur}
-          error={fields['order[name]'].error}
+          errors={fields['order[name]'].errors}
         />
         <TextInput
           text="Номер телефона"
           value={fields['order[phone]'].value}
           name="order[phone]"
-          handleChange={handleChange}
+          handleChange={handleMaskedInputChange}
           handleBlur={handleBlur}
-          error={fields['order[phone]'].error}
+          errors={fields['order[phone]'].errors}
           mask={['+', '7', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
         />
         <Form.Group>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Error } from '../../Error';
 import '../../Declaration/Declaration.scss';
 import './TextInput.scss';
 import Form from 'react-bootstrap/Form';
@@ -8,8 +9,9 @@ import MaskedInput from 'react-text-mask';
 
 export function TextInput(props) {
   const {
-    text, label, handleChange, value, name, type, handleBlur, error, mask,
+    text, label, handleChange, value, name, type, handleBlur, errors, mask,
   } = props;
+  const computedErrors = Array.isArray(errors) ? errors : [errors];
   return (
     <Form.Group as={Row} className="mb-3">
       <Form.Label column sm={12} md={5}>
@@ -28,7 +30,7 @@ export function TextInput(props) {
               name={name}
               onChange={handleChange}
               onBlur={handleBlur}
-              isInvalid={error}
+              isInvalid={computedErrors.length}
             />
           )
           : (
@@ -39,10 +41,16 @@ export function TextInput(props) {
               name={name}
               onChange={handleChange}
               onBlur={handleBlur}
-              isInvalid={error}
+              isInvalid={computedErrors.length}
             />
           )}
-        <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+        <Form.Control.Feedback type="invalid">
+          {/* <Error
+            computedErrors={computedErrors}
+          /> */}
+          {computedErrors}
+        </Form.Control.Feedback>
+
       </Col>
     </Form.Group>
   );
