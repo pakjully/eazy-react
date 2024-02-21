@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './styles.scss';
+import { Spinner } from 'react-bootstrap';
 import { LoginPage } from './Pages/LoginPage';
 import { OrdersPage } from './Pages/OrdersPage';
 import { EmptyPage } from './Pages/EmptyPage';
@@ -8,7 +9,6 @@ import { Show } from './Pages/Show';
 import { Choose } from './Pages/Choose';
 import { Declaration } from './Declaration/Declaration';
 import { Header } from './Header';
-import { Spinner } from 'react-bootstrap';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
